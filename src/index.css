@@ -4,12 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Bingeable Design System - Dark Retro Theme with Purple Accents */
+/* Bingeable Design System - Dark Retro Pixelated Theme with Purple-Black Gradients */
 
 @layer base {
   :root {
-    /* Dark Theme - Black & Purple Palette */
-    --background: 240 10% 3.9%;
+    /* Dark Theme - Black & Purple Gradient Palette */
+    --background: 240 10% 2.5%;
     --foreground: 0 0% 98%;
 
     --card: 240 10% 3.9%;
@@ -20,6 +20,7 @@
 
     --primary: 263 70% 50%;
     --primary-foreground: 0 0% 98%;
+    --primary-glow: 263 70% 60%;
 
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
@@ -33,17 +34,22 @@
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 3.7% 15.9%;
+    --border: 240 3.7% 18%;
     --input: 240 3.7% 15.9%;
     --ring: 263 70% 50%;
 
-    --radius: 0.25rem;
+    --radius: 2px;
 
-    /* Retro Design System Extensions */
-    --gradient-retro: linear-gradient(135deg, hsl(var(--primary)), hsl(263 70% 35%));
-    --gradient-card: linear-gradient(135deg, hsl(240 10% 3.9%), hsl(240 15% 8%));
-    --shadow-retro: 0 0 0 2px hsl(var(--primary) / 0.2);
-    --transition-retro: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Enhanced Pixelated Design System with Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(263 70% 35%), hsl(240 10% 5%));
+    --gradient-card: linear-gradient(135deg, hsl(240 10% 4%), hsl(240 15% 8%), hsl(263 20% 6%));
+    --gradient-background: linear-gradient(180deg, hsl(240 10% 2.5%), hsl(240 15% 1.5%), hsl(263 15% 2%));
+    --gradient-button: linear-gradient(135deg, hsl(var(--primary)), hsl(263 80% 45%));
+    --gradient-hover: linear-gradient(135deg, hsl(var(--primary-glow)), hsl(263 80% 55%));
+    --shadow-retro: 0 0 0 3px hsl(var(--primary) / 0.3);
+    --shadow-pixel: 4px 4px 0px hsl(var(--primary) / 0.4);
+    --shadow-glow: 0 0 20px hsl(var(--primary) / 0.5);
+    --transition-retro: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
@@ -110,6 +116,9 @@
 
   body {
     @apply bg-background text-foreground font-sans;
+    background: var(--gradient-background);
+    min-height: 100vh;
+    image-rendering: pixelated;
   }
 
   /* Retro Typography */
@@ -136,27 +145,68 @@
 }
 
 @layer components {
-  /* Retro Button Variants */
+  /* Enhanced Pixelated Button Variants */
   .btn-retro {
-    @apply px-4 py-2 bg-secondary border-2 border-border text-foreground font-medium;
-    @apply transition-all duration-200 hover:bg-primary hover:border-primary hover:text-primary-foreground;
-    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background;
+    @apply px-4 py-2 border-3 text-foreground font-medium;
+    background: var(--gradient-card);
+    border: 3px solid hsl(var(--border));
+    transition: var(--transition-retro);
+    box-shadow: var(--shadow-pixel);
+    image-rendering: pixelated;
+  }
+
+  .btn-retro:hover {
+    background: var(--gradient-button);
+    border-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    box-shadow: var(--shadow-glow);
+    transform: translate(-2px, -2px);
   }
 
   .btn-retro-primary {
-    @apply px-4 py-2 bg-primary border-2 border-primary text-primary-foreground font-medium;
-    @apply transition-all duration-200 hover:bg-primary/80 hover:border-primary/80;
-    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background;
+    @apply px-4 py-2 border-3 text-primary-foreground font-medium;
+    background: var(--gradient-button);
+    border: 3px solid hsl(var(--primary));
+    transition: var(--transition-retro);
+    box-shadow: var(--shadow-pixel);
+    image-rendering: pixelated;
   }
 
-  /* Movie Card Styles */
+  .btn-retro-primary:hover {
+    background: var(--gradient-hover);
+    border-color: hsl(var(--primary-glow));
+    box-shadow: var(--shadow-glow);
+    transform: translate(-2px, -2px);
+  }
+
+  /* Enhanced Pixelated Movie Card Styles */
   .movie-card {
-    @apply bg-card border border-border rounded-lg overflow-hidden;
-    @apply transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10;
+    @apply border-2 overflow-hidden;
     background: var(--gradient-card);
+    border: 2px solid hsl(var(--border));
+    border-radius: 4px;
+    transition: var(--transition-retro);
+    box-shadow: var(--shadow-pixel);
+    image-rendering: pixelated;
   }
 
   .movie-card:hover {
-    transform: translateY(-2px);
+    border-color: hsl(var(--primary));
+    box-shadow: var(--shadow-glow);
+    transform: translate(-2px, -2px);
+  }
+
+  /* Pixelated Input Styles */
+  .input-pixel {
+    border: 2px solid hsl(var(--border));
+    border-radius: 2px;
+    background: var(--gradient-card);
+    transition: var(--transition-retro);
+    image-rendering: pixelated;
+  }
+
+  .input-pixel:focus {
+    border-color: hsl(var(--primary));
+    box-shadow: var(--shadow-retro);
   }
 }
