@@ -4,46 +4,54 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Bingeable Design System - Dark Retro Theme with Purple Accents */
+/* Bingeable Design System - Dark Purple/Black Theme with Pixelated Elements */
 
 @layer base {
   :root {
-    /* Dark Theme - Black & Purple Palette */
-    --background: 240 10% 3.9%;
+    /* Dark Purple/Black Gradient Theme */
+    --background: 240 5% 6%;
     --foreground: 0 0% 98%;
 
-    --card: 240 10% 3.9%;
+    --card: 240 8% 8%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 240 10% 3.9%;
+    --popover: 240 8% 8%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 263 70% 50%;
+    --primary: 270 85% 60%;
     --primary-foreground: 0 0% 98%;
+    --primary-glow: 270 85% 70%;
 
-    --secondary: 240 3.7% 15.9%;
+    --secondary: 240 5% 12%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 240 5% 12%;
+    --muted-foreground: 240 10% 65%;
 
-    --accent: 263 70% 50%;
+    --accent: 290 95% 65%;
     --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 85% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 263 70% 50%;
+    --border: 240 5% 18%;
+    --input: 240 5% 15%;
+    --ring: 270 85% 60%;
 
-    --radius: 0.25rem;
+    --radius: 0rem;
 
-    /* Retro Design System Extensions */
-    --gradient-retro: linear-gradient(135deg, hsl(var(--primary)), hsl(263 70% 35%));
-    --gradient-card: linear-gradient(135deg, hsl(240 10% 3.9%), hsl(240 15% 8%));
-    --shadow-retro: 0 0 0 2px hsl(var(--primary) / 0.2);
-    --transition-retro: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Pixelated Design System Extensions */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--background)), hsl(240 8% 12%));
+    --gradient-card: linear-gradient(135deg, hsl(var(--card)), hsl(240 10% 10%));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(310 95% 70%));
+    
+    --shadow-pixel: 4px 4px 0px hsl(var(--primary) / 0.3);
+    --shadow-glow: 0 0 20px hsl(var(--primary-glow) / 0.4);
+    --shadow-card: 2px 2px 0px hsl(var(--border));
+    
+    --transition-pixel: all 0.1s ease-out;
+    --transition-glow: all 0.3s ease-in-out;
   }
 
   .dark {
@@ -112,51 +120,127 @@
     @apply bg-background text-foreground font-sans;
   }
 
-  /* Retro Typography */
-  .font-retro {
+  /* Pixelated Typography */
+  .font-pixel {
     font-family: 'Press Start 2P', monospace;
-    font-size: 0.875rem;
-    line-height: 1.6;
-    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+    line-height: 1.8;
+    letter-spacing: 0.1em;
+    text-shadow: 1px 1px 0px hsl(var(--primary) / 0.3);
   }
 
-  .font-retro-lg {
+  .font-pixel-lg {
     font-family: 'Press Start 2P', monospace;
-    font-size: 1.125rem;
-    line-height: 1.6;
-    letter-spacing: 0.05em;
+    font-size: 1rem;
+    line-height: 1.8;
+    letter-spacing: 0.1em;
+    text-shadow: 2px 2px 0px hsl(var(--primary) / 0.3);
   }
 
-  .font-retro-xl {
+  .font-pixel-xl {
     font-family: 'Press Start 2P', monospace;
     font-size: 1.5rem;
-    line-height: 1.6;
-    letter-spacing: 0.05em;
+    line-height: 1.8;
+    letter-spacing: 0.1em;
+    text-shadow: 3px 3px 0px hsl(var(--primary) / 0.3);
+  }
+
+  .font-pixel-2xl {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2rem;
+    line-height: 1.8;
+    letter-spacing: 0.1em;
+    text-shadow: 4px 4px 0px hsl(var(--primary) / 0.3);
   }
 }
 
 @layer components {
-  /* Retro Button Variants */
-  .btn-retro {
-    @apply px-4 py-2 bg-secondary border-2 border-border text-foreground font-medium;
-    @apply transition-all duration-200 hover:bg-primary hover:border-primary hover:text-primary-foreground;
-    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background;
+  /* Pixelated Button Variants */
+  .btn-pixel {
+    @apply px-6 py-3 font-pixel text-foreground border-2 border-border;
+    background: var(--gradient-secondary);
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-pixel);
   }
 
-  .btn-retro-primary {
-    @apply px-4 py-2 bg-primary border-2 border-primary text-primary-foreground font-medium;
-    @apply transition-all duration-200 hover:bg-primary/80 hover:border-primary/80;
-    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background;
+  .btn-pixel:hover {
+    background: var(--gradient-primary);
+    color: hsl(var(--primary-foreground));
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0px hsl(var(--border));
+  }
+
+  .btn-pixel-primary {
+    @apply px-6 py-3 font-pixel text-primary-foreground border-2 border-primary;
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-pixel);
+    transition: var(--transition-pixel);
+  }
+
+  .btn-pixel-primary:hover {
+    background: var(--gradient-accent);
+    border-color: hsl(var(--accent));
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0px hsl(var(--primary) / 0.5);
+  }
+
+  .btn-pixel-ghost {
+    @apply px-6 py-3 font-pixel text-primary border-2 border-primary bg-transparent;
+    transition: var(--transition-pixel);
+  }
+
+  .btn-pixel-ghost:hover {
+    background: var(--gradient-primary);
+    color: hsl(var(--primary-foreground));
+    transform: translate(-1px, -1px);
+    box-shadow: var(--shadow-pixel);
   }
 
   /* Movie Card Styles */
   .movie-card {
-    @apply bg-card border border-border rounded-lg overflow-hidden;
-    @apply transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10;
+    @apply border-2 border-border overflow-hidden;
     background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-pixel);
   }
 
   .movie-card:hover {
-    transform: translateY(-2px);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px hsl(var(--border)), 0 0 20px hsl(var(--primary) / 0.3);
+    border-color: hsl(var(--primary));
+  }
+
+  /* Pixelated Input Styles */
+  .input-pixel {
+    @apply border-2 border-border bg-input text-foreground px-4 py-3 font-sans;
+    box-shadow: inset 2px 2px 0px hsl(var(--muted));
+    transition: var(--transition-pixel);
+  }
+
+  .input-pixel:focus {
+    @apply outline-none border-primary;
+    box-shadow: inset 2px 2px 0px hsl(var(--primary) / 0.2), 0 0 0 3px hsl(var(--primary) / 0.3);
+  }
+
+  /* Glow Effects */
+  .glow-primary {
+    box-shadow: var(--shadow-glow);
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes pulse-glow {
+    from {
+      box-shadow: 0 0 20px hsl(var(--primary-glow) / 0.4);
+    }
+    to {
+      box-shadow: 0 0 30px hsl(var(--primary-glow) / 0.6);
+    }
+  }
+
+  /* Pixel Pattern Background */
+  .pixel-pattern {
+    background-image: 
+      radial-gradient(circle at 1px 1px, hsl(var(--primary) / 0.1) 1px, transparent 0);
+    background-size: 20px 20px;
   }
 }
